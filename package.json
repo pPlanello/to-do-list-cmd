@@ -1,0 +1,22 @@
+{
+  "name": "to-do-list-cmd",
+  "version": "1.0.0",
+  "description": "App in CMD to create tasks and complete them",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pPlanello/to-do-list-cmd.git"
+  },
+  "keywords": [
+    "cmd"
+  ],
+  "author": "Pablo Planelló San Segundo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pPlanello/to-do-list-cmd/issues"
+  },
+  "homepage": "https://github.com/pPlanello/to-do-list-cmd#readme"
+}
