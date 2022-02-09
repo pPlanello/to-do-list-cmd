@@ -20,6 +20,7 @@ const menuOpts = [
 
 /**
  * Print menu to choice
+ * 
  * @returns option choice
  */
 const inquirerMenu  = async() => {
