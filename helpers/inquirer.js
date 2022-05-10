@@ -73,8 +73,56 @@ const readInput = async(message) => {
     return desc;
 }
 
+/**
+ * Method to list and obtain id to delete task
+ * 
+ * @param {*} tasks to list
+ * @returns id choice to delete
+ */
+const showTaskToDelete = async(tasks = []) => {
+
+    const choices = tasks.map((task, i) => {
+        const index = `${i + 1}.green`;
+        return {
+            value: task.id,
+            name: `${index} ${task.desc}`
+        }
+    });
+
+    choices.unshift({
+        value: 'o',
+        name: '0'.green + ' Cancelar'
+    })
+
+    const question = [ 
+        {
+            type: 'list',
+            name: 'id',
+            message: 'Borrar Tarea',
+            choices
+        }
+    ];
+
+
+    const { id } = await inquirer.prompt(question);
+    return id;
+}
+
+const confirm = async (message) => {
+    const question = [{
+        type: 'confirm',
+        name: 'ok',
+        message
+    }];
+
+    const {ok} = await inquirer.prompt(question);
+    return ok;
+}
+
 module.exports = {
     inquirerMenu,
     confirmDialog,
-    readInput
+    readInput,
+    showTaskToDelete,
+    confirm
 }

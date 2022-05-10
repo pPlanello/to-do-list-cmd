@@ -13,8 +13,9 @@ const saveDB = (data) => {
 }
 
 /**
+ * Method to read data in file
  * 
- * @returns 
+ * @returns {*} data saved
  */
 const readDB = () => {
     if (!fs.existsSync(archive)) {
