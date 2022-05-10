@@ -35,7 +35,7 @@ class Tasks {
      * @param {*} tasks to load in class 
      */
     loadTaskFromArray(tasks = []) {
-        tasks.forEach(task => this._list[tasks.id] = task);
+        tasks.forEach(task => this._list[task.id] = task);
     }
 
     /**
@@ -44,10 +44,10 @@ class Tasks {
     showTasks() {
         console.log('');
         this.listArr.forEach((task, i) => {
-            const index = `${i + 1}.green`;
-            const {desc, completed} = task;
-            const state = (completed) ? 'Completada'.green : 'Pendiente'.red;
-            console.log(`${index} ${desc} => ${state}`);
+            const index = `${i + 1}`.green;
+            const {desc, completedIn} = task;
+            const state = (completedIn) ? 'Completada'.green : 'Pendiente'.red;
+            console.log(`${index} ${desc} =:= ${state}`);
         });
     }
 
@@ -60,17 +60,17 @@ class Tasks {
         console.log('');
         let count = 0;
         this.listArr.forEach(task => {
-            const {desc, completed} = task;
-            const state = (completed) ? 'Completada'.green : 'Pendiente'.red;
+            const {desc, completedIn} = task;
+            const state = (completedIn) ? 'Completada'.green : 'Pendiente'.red;
             if (stateCompleted) {
-                if (completed) {
+                if (completedIn) {
                     count += 1;
-                    console.log(`${count.toString().green} ${desc} => ${completed}`);
+                    console.log(`${count.toString().green} ${desc} =:= ${completedIn.green}`);
                 }
             } else {
-                if (!completed) {
+                if (!completedIn) {
                     count += 1;
-                    console.log(`${count.toString().green} ${desc} => ${state}`);
+                    console.log(`${count.toString().green} ${desc} =:= ${state}`);
                 }
             } 
         });
@@ -85,6 +85,25 @@ class Tasks {
         if (this._list[id]) {
             delete this._list[id];
         }
+    }
+
+    /**
+     * Method to complete the task or tasks
+     * 
+     * @param {*} ids tasks to complete
+     */
+    toggleCompleted(ids = []) {
+
+        ids.forEach(id => {
+            const task = this._list[id];
+            task.completedIn = new Date().toISOString();
+        });
+
+        this.listArr.forEach(task => {
+            if (!ids.includes(task.id)) {
+                this._list[task.id].completedIn = null;
+            }
+        });
     }
 
 }

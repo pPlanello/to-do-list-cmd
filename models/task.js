@@ -3,12 +3,12 @@ const { v4: uuid } = require('uuid');
 class Task {
     id = '';
     desc = '';
-    completed = null;
+    completedIn = null;
 
     constructor(desc) {
         this.id = uuid();
         this.desc = desc;
-        this.completed = null;
+        this.completedIn = null;
     }
 }
 

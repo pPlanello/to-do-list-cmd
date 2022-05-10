@@ -108,6 +108,48 @@ const showTaskToDelete = async(tasks = []) => {
     return id;
 }
 
+
+/**
+ * Method to list and obtain id to delete task
+ * 
+ * @param {*} tasks to list
+ * @returns id choice to delete
+ */
+ const showTaskCheckList = async(tasks = []) => {
+
+    const choices = tasks.map((task, i) => {
+        const index = `${i + 1}.`.green;
+        return {
+            value: task.id,
+            name: `${index} ${task.desc}`,
+            checked: (task.completedIn) ? true : false
+        }
+    });
+
+    choices.unshift({
+        value: 'o',
+        name: '0'.green + ' Cancelar'
+    })
+
+    const question = [ 
+        {
+            type: 'checkbox',
+            name: 'ids',
+            message: 'Selecciona una o varias',
+            choices
+        }
+    ];
+
+    const { ids } = await inquirer.prompt(question);
+    return ids;
+}
+
+/**
+ * Method to show confirm
+ * 
+ * @param {*} message with the question to confirm
+ * @returns is confirm or not
+ */
 const confirm = async (message) => {
     const question = [{
         type: 'confirm',
@@ -124,5 +166,6 @@ module.exports = {
     confirmDialog,
     readInput,
     showTaskToDelete,
+    showTaskCheckList,
     confirm
 }
